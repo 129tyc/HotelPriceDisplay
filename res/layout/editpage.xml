@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".EditPage">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="房间类型若不用则留空"
+                android:gravity="center_horizontal"
+                android:textSize="80sp"/>
+    </LinearLayout>
+
+    <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+        <TableRow android:minHeight="60dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="房间类型："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_roomType1"
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="门市价："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_normalPrice1"
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="会员价："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_specialPrice1"
+                    android:textSize="@dimen/EditTextSize"/>
+        </TableRow>
+
+        <TableRow android:minHeight="60dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="房间类型："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_roomType2"
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="门市价："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_normalPrice2"
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="会员价："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_specialPrice2"
+                    android:textSize="@dimen/EditTextSize"/>
+        </TableRow>
+
+        <TableRow android:minHeight="60dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="房间类型："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_roomType3"
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="门市价："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_normalPrice3"
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="会员价："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_specialPrice3"
+                    android:textSize="@dimen/EditTextSize"/>
+        </TableRow>
+
+        <TableRow android:minHeight="60dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="房间类型："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_roomType4"
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="门市价："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_normalPrice4"
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="会员价："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_specialPrice4"
+                    android:textSize="@dimen/EditTextSize"/>
+        </TableRow>
+
+        <TableRow android:minHeight="60dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="房间类型："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_roomType5"
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="门市价："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_normalPrice5"
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="会员价："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_specialPrice5"
+                    android:textSize="@dimen/EditTextSize"/>
+        </TableRow>
+        <TableRow android:minHeight="60dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="房间类型："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_roomType6"
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="门市价："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_normalPrice6"
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="会员价："
+                    android:textSize="@dimen/EditTextSize"/>
+
+            <EditText
+                    android:layout_width="@dimen/editTextWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/e_specialPrice6"
+                    android:textSize="@dimen/EditTextSize"/>
+        </TableRow>
+    </TableLayout>
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="公告设置:"
+                android:textSize="@dimen/EditTextSize"/>
+        <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/setMsg"
+                android:textSize="@dimen/EditTextSize"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="50dp">
+
+        <Button
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="确定"
+                android:textSize="43.6dp"
+                android:id="@+id/positive"
+                android:gravity="center_horizontal"
+                android:layout_marginRight="872dp"/>
+
+        <Button
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="取消"
+                android:textSize="43.6dp"
+                android:id="@+id/negative"
+                android:gravity="center_horizontal"/>
+    </LinearLayout>
+</LinearLayout>

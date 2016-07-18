@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textViewWidth">280dp</dimen>
+    <dimen name="editTextWidth">250dp</dimen>
+    <dimen name="MyActivityTextViewTextSize">60sp</dimen>
+    <dimen name="MyActivityTableMinHeight">100dp</dimen>
+    <dimen name="EditTextSize">60dp</dimen>
+</resources>

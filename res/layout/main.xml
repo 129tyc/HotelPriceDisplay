@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:weightSum="1"
+              android:background="@drawable/bg1"
+              android:gravity="top">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="日月宾馆（周浦店）欢迎您"
+                android:textSize="98.1sp"
+                android:gravity="center"
+                android:shadowColor="#000000"
+                android:shadowDy="2"
+                android:shadowDx="2"
+                android:shadowRadius="10"
+                android:textColor="#ffffff"
+                android:layout_row="10"
+                android:layout_column="0"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="70dp"/>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                >
+
+            <TextClock
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/mClock"
+                    android:textSize="87.2sp"
+                    android:textColor="#ffffff"
+                    android:shadowColor="#000000"
+                    android:shadowDy="2"
+                    android:shadowDx="2"
+                    android:shadowRadius="10"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+            <TextClock
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textClock"
+                    android:textSize="109sp"
+                    android:textColor="#ffffff"
+                    android:shadowColor="#000000"
+                    android:shadowDy="2"
+                    android:shadowDx="2"
+                    android:shadowRadius="10"
+                    android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="公告"
+                android:textSize="87.2sp"
+                android:shadowColor="#000000"
+                android:shadowDy="2"
+                android:shadowDx="2"
+                android:shadowRadius="10"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="70dp"/>
+
+        <TextView
+                android:layout_width="1046.4dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/msg"
+                android:textColor="#ffffff"
+                android:shadowColor="#000000"
+                android:shadowDy="2"
+                android:shadowDx="2"
+                android:shadowRadius="10"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:textSize="87.2sp"
+                android:scrollHorizontally="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:singleLine="true"
+                />
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            >
+
+        <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp">
+
+            <TableRow
+                    android:layout_width="@dimen/textViewWidth"
+                    android:layout_height="match_parent"
+                    android:minHeight="130dp">
+
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="房间类型"
+                        android:id="@+id/roomType"
+                        android:layout_column="7"
+                        android:background="@drawable/table_frame_lightblue"
+                        android:textSize="76.3sp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="门市价"
+                        android:id="@+id/normalPrice"
+                        android:layout_column="7"
+                        android:textSize="76.3sp"
+                        android:background="@drawable/table_frame_lightblue"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        />
+
+                <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="会员价"
+                        android:id="@+id/specialPrice"
+                        android:layout_column="7"
+                        android:textSize="76.3sp"
+                        android:background="@drawable/table_frame_lightblue"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+            </TableRow>
+
+            <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:minHeight="130dp">
+
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="房间类型"
+                        android:id="@+id/roomType1"
+                        android:layout_column="7"
+                        android:background="@drawable/table_frame_lightpink"
+                        android:textSize="76.3sp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="门市价"
+                        android:id="@+id/normalPrice1"
+                        android:layout_column="7"
+                        android:textSize="76.3sp"
+                        android:background="@drawable/table_frame_lightpink"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="会员价"
+                        android:id="@+id/specialPrice1"
+                        android:layout_column="7"
+                        android:textSize="76.3sp"
+                        android:background="@drawable/table_frame_lightpink"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+            </TableRow>
+
+            <TableRow
+                    android:layout_width="@dimen/textViewWidth"
+                    android:layout_height="match_parent"
+                    android:minHeight="130dp">
+
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="房间类型"
+                        android:id="@+id/roomType2"
+                        android:layout_column="7"
+                        android:background="@drawable/table_frame_lightblue"
+                        android:textSize="76.3sp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="门市价"
+                        android:id="@+id/normalPrice2"
+                        android:layout_column="7"
+                        android:textSize="76.3sp"
+                        android:background="@drawable/table_frame_lightblue"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        />
+
+                <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="会员价"
+                        android:id="@+id/specialPrice2"
+                        android:layout_column="7"
+                        android:textSize="76.3sp"
+                        android:background="@drawable/table_frame_lightblue"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+            </TableRow>
+
+            <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:minHeight="130dp">
+
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="房间类型"
+                        android:id="@+id/roomType3"
+                        android:layout_column="7"
+                        android:background="@drawable/table_frame_lightpink"
+                        android:textSize="76.3sp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="门市价"
+                        android:id="@+id/normalPrice3"
+                        android:layout_column="7"
+                        android:textSize="76.3sp"
+                        android:background="@drawable/table_frame_lightpink"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="会员价"
+                        android:id="@+id/specialPrice3"
+                        android:layout_column="7"
+                        android:textSize="76.3sp"
+                        android:background="@drawable/table_frame_lightpink"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+            </TableRow>
+
+            <TableRow
+                    android:layout_width="@dimen/textViewWidth"
+                    android:layout_height="match_parent"
+                    android:minHeight="130dp">
+
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="房间类型"
+                        android:id="@+id/roomType4"
+                        android:layout_column="7"
+                        android:background="@drawable/table_frame_lightblue"
+                        android:textSize="76.3sp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="门市价"
+                        android:id="@+id/normalPrice4"
+                        android:layout_column="7"
+                        android:textSize="76.3sp"
+                        android:background="@drawable/table_frame_lightblue"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        />
+
+                <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="会员价"
+                        android:id="@+id/specialPrice4"
+                        android:layout_column="7"
+                        android:textSize="76.3sp"
+                        android:background="@drawable/table_frame_lightblue"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+            </TableRow>
+
+            <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:minHeight="130dp">
+
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="房间类型"
+                        android:id="@+id/roomType5"
+                        android:layout_column="7"
+                        android:background="@drawable/table_frame_lightpink"
+                        android:textSize="76.3sp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="门市价"
+                        android:id="@+id/normalPrice5"
+                        android:layout_column="7"
+                        android:textSize="76.3sp"
+                        android:background="@drawable/table_frame_lightpink"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="会员价"
+                        android:id="@+id/specialPrice5"
+                        android:layout_column="7"
+                        android:textSize="76.3sp"
+                        android:background="@drawable/table_frame_lightpink"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+            </TableRow>
+
+            <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    >
+
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="房间类型"
+                        android:id="@+id/roomType6"
+                        android:layout_column="7"
+                        android:background="@drawable/table_frame_lightblue"
+                        android:textSize="76.3sp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:gravity="center_horizontal"
+                        android:text="门市价"
+                        android:id="@+id/normalPrice6"
+                        android:layout_column="7"
+                        android:textSize="76.3sp"
+                        android:background="@drawable/table_frame_lightblue"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+
+                <TextView
+                        android:layout_width="@dimen/textViewWidth"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="会员价"
+                        android:id="@+id/specialPrice6"
+                        android:layout_column="7"
+                        android:textSize="76.3sp"
+                        android:background="@drawable/table_frame_lightblue"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+            </TableRow>
+        </TableLayout>
+
+        <FrameLayout
+                android:layout_width="1100dp"
+                android:layout_height="825dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="30dp">
+
+            <android.support.v4.view.ViewPager
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/viewPager"
+                    android:layout_gravity="center"
+                    >
+
+            </android.support.v4.view.ViewPager>
+
+            <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom">
+
+                <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/viewGroup"
+                        android:layout_marginBottom="30dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"></LinearLayout>
+            </RelativeLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="140dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="right">
+
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/button"
+                android:background="#00000000"/>
+    </LinearLayout>
+
+</LinearLayout>
+
