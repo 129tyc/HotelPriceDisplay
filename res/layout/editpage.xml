@@ -280,17 +280,29 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="确定"
-                android:textSize="43.6dp"
+                android:textSize="43.6sp"
                 android:id="@+id/positive"
                 android:gravity="center_horizontal"
-                android:layout_marginRight="872dp"/>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="200dp"/>
 
         <Button
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="取消"
-                android:textSize="43.6dp"
+                android:textSize="43.6sp"
                 android:id="@+id/negative"
-                android:gravity="center_horizontal"/>
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="200dp"/>
+
+        <Button
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="清空"
+                android:id="@+id/clear"
+                android:textSize="43.6sp"
+                android:layout_gravity="center_horizontal"/>
     </LinearLayout>
+
 </LinearLayout>

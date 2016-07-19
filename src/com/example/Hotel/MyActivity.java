@@ -3,8 +3,10 @@ package com.example.Hotel;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
@@ -35,52 +37,46 @@ public class MyActivity extends Activity {
     private static final String LOG_TAG = "MyActivity";
     private static final String PASSWORD = "15638223310";
     private RoomData roomData;
-    private static TextView roomType1;
-    private static TextView normalPrice1;
-    private static TextView SpecialPrice1;
-    private static TextView roomType2;
-    private static TextView normalPrice2;
-    private static TextView SpecialPrice2;
-    private static TextView roomType3;
-    private static TextView normalPrice3;
-    private static TextView SpecialPrice3;
-    private static TextView roomType4;
-    private static TextView normalPrice4;
-    private static TextView SpecialPrice4;
-    private static TextView roomType5;
-    private static TextView normalPrice5;
-    private static TextView SpecialPrice5;
-    private static TextView roomType6;
-    private static TextView normalPrice6;
-    private static TextView SpecialPrice6;
+    private static TextView[] viewTextArray = new TextView[18];
+    private static ProgressDialog progressDialog;
+    private static String[] tempRoomType;
+    private static int[] tempNormalPrice;
+    private static int[] tempSpecialPrice;
+    private static TextView msg;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        roomType1 = (TextView) this.findViewById(R.id.roomType1);
-        roomType2 = (TextView) this.findViewById(R.id.roomType2);
-        roomType3 = (TextView) this.findViewById(R.id.roomType3);
-        roomType4 = (TextView) this.findViewById(R.id.roomType4);
-        roomType5 = (TextView) this.findViewById(R.id.roomType5);
-        roomType6 = (TextView) this.findViewById(R.id.roomType6);
-        normalPrice1 = (TextView) this.findViewById(R.id.normalPrice1);
-        normalPrice2 = (TextView) this.findViewById(R.id.normalPrice2);
-        normalPrice3 = (TextView) this.findViewById(R.id.normalPrice3);
-        normalPrice4 = (TextView) this.findViewById(R.id.normalPrice4);
-        normalPrice5 = (TextView) this.findViewById(R.id.normalPrice5);
-        normalPrice6 = (TextView) this.findViewById(R.id.normalPrice6);
-        SpecialPrice1 = (TextView) this.findViewById(R.id.specialPrice1);
-        SpecialPrice2 = (TextView) this.findViewById(R.id.specialPrice2);
-        SpecialPrice3 = (TextView) this.findViewById(R.id.specialPrice3);
-        SpecialPrice4 = (TextView) this.findViewById(R.id.specialPrice4);
-        SpecialPrice5 = (TextView) this.findViewById(R.id.specialPrice5);
-        SpecialPrice6 = (TextView) this.findViewById(R.id.specialPrice6);
+        viewTextArray[0] = (TextView) this.findViewById(R.id.roomType1);
+        viewTextArray[1] = (TextView) this.findViewById(R.id.roomType2);
+        viewTextArray[2] = (TextView) this.findViewById(R.id.roomType3);
+        viewTextArray[3] = (TextView) this.findViewById(R.id.roomType4);
+        viewTextArray[4] = (TextView) this.findViewById(R.id.roomType5);
+        viewTextArray[5] = (TextView) this.findViewById(R.id.roomType6);
+        viewTextArray[6] = (TextView) this.findViewById(R.id.normalPrice1);
+        viewTextArray[7] = (TextView) this.findViewById(R.id.normalPrice2);
+        viewTextArray[8] = (TextView) this.findViewById(R.id.normalPrice3);
+        viewTextArray[9] = (TextView) this.findViewById(R.id.normalPrice4);
+        viewTextArray[10] = (TextView) this.findViewById(R.id.normalPrice5);
+        viewTextArray[11] = (TextView) this.findViewById(R.id.normalPrice6);
+        viewTextArray[12] = (TextView) this.findViewById(R.id.specialPrice1);
+        viewTextArray[13] = (TextView) this.findViewById(R.id.specialPrice2);
+        viewTextArray[14] = (TextView) this.findViewById(R.id.specialPrice3);
+        viewTextArray[15] = (TextView) this.findViewById(R.id.specialPrice4);
+        viewTextArray[16] = (TextView) this.findViewById(R.id.specialPrice5);
+        viewTextArray[17] = (TextView) this.findViewById(R.id.specialPrice6);
         Button button = (Button) this.findViewById(R.id.button);
         textClock = (TextClock) this.findViewById(R.id.mClock);
         textClock2 = (TextClock) this.findViewById(R.id.textClock);
         ViewGroup group = (ViewGroup) this.findViewById(R.id.viewGroup);
         viewPager = (ViewPager) this.findViewById(R.id.viewPager);
+        roomData = (RoomData) getApplication();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("注意！");
+        progressDialog.setMessage("正在初始化，请稍后");
+        progressDialog.setCancelable(false);
+        new InitTask().execute();
         imgIdArray = new int[]{R.drawable.sp1, R.drawable.sp2, R.drawable.sp3, R.drawable.sp4, R.drawable.sp5,
                 R.drawable.sp6, R.drawable.sp7, R.drawable.sp8, R.drawable.sp9, R.drawable.sp10, R.drawable.sp11, R.drawable.sp12};
         tips = new ImageView[imgIdArray.length];
@@ -136,9 +132,7 @@ public class MyActivity extends Activity {
 
             @Override
             public Object instantiateItem(ViewGroup container, int position) {
-//               return super.instantiateItem(container, position);
                 //装载图片
-//                container.addView(mImageViews[position % mImageViews.length], 0);
                 position %= mImageViews.length;
                 if (position < 0) {
                     position = mImageViews.length + position;
@@ -192,31 +186,11 @@ public class MyActivity extends Activity {
                 }
             }
         });
-        TextView msg = (TextView)this.findViewById(R.id.msg);
-        handler.sendEmptyMessageDelayed(ImageHandler.MSG_UPDATE_IMAGE,ImageHandler.MSG_DELAY);
+        msg = (TextView) this.findViewById(R.id.msg);
+        handler.sendEmptyMessageDelayed(ImageHandler.MSG_UPDATE_IMAGE, ImageHandler.MSG_DELAY);
         textClock.setFormat12Hour("yyyy年MM月dd日");//设置日期
         textClock2.setFormat24Hour("HH:mm");
         textClock2.setFormat12Hour("hh:mm");
-        roomData = (RoomData) getApplication();
-        roomType1.setText(roomData.getRoomType1());
-        roomType2.setText(roomData.getRoomType2());
-        roomType3.setText(roomData.getRoomType3());
-        roomType4.setText(roomData.getRoomType4());
-        roomType5.setText(roomData.getRoomType5());
-        roomType6.setText(roomData.getRoomType6());
-        normalPrice1.setText(roomData.getNormalPrice1() + "");
-        normalPrice2.setText(roomData.getNormalPrice2() + "");
-        normalPrice3.setText(roomData.getNormalPrice3() + "");
-        normalPrice4.setText(roomData.getNormalPrice4() + "");
-        normalPrice5.setText(roomData.getNormalPrice5() + "");
-        normalPrice6.setText(roomData.getNormalPrice6() + "");
-        SpecialPrice1.setText(roomData.getSpecialPrice1() + "");
-        SpecialPrice2.setText(roomData.getSpecialPrice2() + "");
-        SpecialPrice3.setText(roomData.getSpecialPrice3() + "");
-        SpecialPrice4.setText(roomData.getSpecialPrice4() + "");
-        SpecialPrice5.setText(roomData.getSpecialPrice5() + "");
-        SpecialPrice6.setText(roomData.getSpecialPrice6() + "");
-        msg.setText(roomData.getMsg());
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -233,7 +207,7 @@ public class MyActivity extends Activity {
                         if (password.equals(PASSWORD)) {
                             Intent intent = new Intent(MyActivity.this, EditPage.class);
                             startActivity(intent);
-                            MyActivity.this.finish();
+//                            MyActivity.this.finish();
                         }
                     }
                 });
@@ -247,6 +221,60 @@ public class MyActivity extends Activity {
                 alertDialog.show();
             }
         });
+    }
+
+    public class InitTask extends AsyncTask<String, Integer, Integer> {
+        @Override
+        protected Integer doInBackground(String... params) {
+            int values = 0;
+            DataSharedPreferences dataSharedPreferences = new DataSharedPreferences(MyActivity.this);
+            roomData.setRoomType(dataSharedPreferences.ReadRoomType());
+            values += 20;
+            publishProgress(values);
+            roomData.setNormalPrice(dataSharedPreferences.ReadNormalPrice());
+            values += 20;
+            publishProgress(values);
+            roomData.setSpecialPrice(dataSharedPreferences.ReadSpecialPrice());
+            values += 20;
+            publishProgress(values);
+            roomData.setMsg(dataSharedPreferences.ReadMsg());
+            values += 20;
+            publishProgress(values);
+            tempRoomType = roomData.getRoomType();
+            tempNormalPrice = roomData.getNormalPrice();
+            tempSpecialPrice = roomData.getSpecialPrice();
+            values += 20;
+            publishProgress(values);
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            progressDialog.dismiss();
+            for (int i = 0; i < 18; i++) {
+                if (i < 6)
+                    viewTextArray[i].setText(tempRoomType[i]);
+                if (i >= 6 && i < 12)
+                    viewTextArray[i].setText(tempNormalPrice[i - 6] + "");
+                if (i >= 12)
+                    viewTextArray[i].setText(tempSpecialPrice[i - 12] + "");
+            }
+            msg.setText(roomData.getMsg());
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            progressDialog.setProgress(values[0]);
+        }
+
     }
 
     private static class ImageHandler extends Handler {

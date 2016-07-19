@@ -1,7 +1,11 @@
 package com.example.Hotel;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -13,121 +17,148 @@ import android.widget.EditText;
  */
 public class EditPage extends Activity {
     private RoomData roomData;
-    private static EditText e_roomType1;
-    private static EditText e_roomType2;
-    private static EditText e_roomType3;
-    private static EditText e_roomType4;
-    private static EditText e_roomType5;
-    private static EditText e_roomType6;
-    private static EditText e_normalPrice1;
-    private static EditText e_normalPrice2;
-    private static EditText e_normalPrice3;
-    private static EditText e_normalPrice4;
-    private static EditText e_normalPrice5;
-    private static EditText e_normalPrice6;
-    private static EditText e_specialPrice1;
-    private static EditText e_specialPrice2;
-    private static EditText e_specialPrice3;
-    private static EditText e_specialPrice4;
-    private static EditText e_specialPrice5;
-    private static EditText e_specialPrice6;
+    private static String[] tempRoomType;
+    private static int[] tempNormalPrice;
+    private static int[] tempSpecialPrice;
+    private static String msg;
+    private static EditText[] editTextArray = new EditText[18];
+    private static ProgressDialog progressDialog;
     private static EditText setMsg;
     private static Button button1;
     private static Button button2;
+    private static Button button3;
 
-//    @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.editpage);
-        e_roomType1 = (EditText) findViewById(R.id.e_roomType1);
-        e_roomType2 = (EditText) findViewById(R.id.e_roomType2);
-        e_roomType3 = (EditText) findViewById(R.id.e_roomType3);
-        e_roomType4 = (EditText) findViewById(R.id.e_roomType4);
-        e_roomType5 = (EditText) findViewById(R.id.e_roomType5);
-        e_roomType6 = (EditText) findViewById(R.id.e_roomType6);
-        e_normalPrice1 = (EditText) findViewById(R.id.e_normalPrice1);
-        e_normalPrice2 = (EditText) findViewById(R.id.e_normalPrice2);
-        e_normalPrice3 = (EditText) findViewById(R.id.e_normalPrice3);
-        e_normalPrice4 = (EditText) findViewById(R.id.e_normalPrice4);
-        e_normalPrice5 = (EditText) findViewById(R.id.e_normalPrice5);
-        e_normalPrice6 = (EditText) findViewById(R.id.e_normalPrice6);
-        e_specialPrice1 = (EditText) findViewById(R.id.e_specialPrice1);
-        e_specialPrice2 = (EditText) findViewById(R.id.e_specialPrice2);
-        e_specialPrice3 = (EditText) findViewById(R.id.e_specialPrice3);
-        e_specialPrice4 = (EditText) findViewById(R.id.e_specialPrice4);
-        e_specialPrice5 = (EditText) findViewById(R.id.e_specialPrice5);
-        e_specialPrice6 = (EditText) findViewById(R.id.e_specialPrice6);
+        editTextArray[0] = (EditText) findViewById(R.id.e_roomType1);
+        editTextArray[1] = (EditText) findViewById(R.id.e_roomType2);
+        editTextArray[2] = (EditText) findViewById(R.id.e_roomType3);
+        editTextArray[3] = (EditText) findViewById(R.id.e_roomType4);
+        editTextArray[4] = (EditText) findViewById(R.id.e_roomType5);
+        editTextArray[5] = (EditText) findViewById(R.id.e_roomType6);
+        editTextArray[6] = (EditText) findViewById(R.id.e_normalPrice1);
+        editTextArray[7] = (EditText) findViewById(R.id.e_normalPrice2);
+        editTextArray[8] = (EditText) findViewById(R.id.e_normalPrice3);
+        editTextArray[9] = (EditText) findViewById(R.id.e_normalPrice4);
+        editTextArray[10] = (EditText) findViewById(R.id.e_normalPrice5);
+        editTextArray[11] = (EditText) findViewById(R.id.e_normalPrice6);
+        editTextArray[12] = (EditText) findViewById(R.id.e_specialPrice1);
+        editTextArray[13] = (EditText) findViewById(R.id.e_specialPrice2);
+        editTextArray[14] = (EditText) findViewById(R.id.e_specialPrice3);
+        editTextArray[15] = (EditText) findViewById(R.id.e_specialPrice4);
+        editTextArray[16] = (EditText) findViewById(R.id.e_specialPrice5);
+        editTextArray[17] = (EditText) findViewById(R.id.e_specialPrice6);
         setMsg = (EditText) findViewById(R.id.setMsg);
         button1 = (Button) findViewById(R.id.positive);
         button2 = (Button) findViewById(R.id.negative);
+        button3 = (Button) findViewById(R.id.clear);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("注意！");
+        progressDialog.setMessage("正在保存数据，请稍后");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
         roomData = (RoomData) getApplication();
-        e_roomType1.setText(roomData.getRoomType1());
-        e_roomType2.setText(roomData.getRoomType2());
-        e_roomType3.setText(roomData.getRoomType3());
-        e_roomType4.setText(roomData.getRoomType4());
-        e_roomType5.setText(roomData.getRoomType5());
-        e_roomType6.setText(roomData.getRoomType6());
-        e_normalPrice1.setText(roomData.getNormalPrice1() + "");
-        e_normalPrice2.setText(roomData.getNormalPrice2() + "");
-        e_normalPrice3.setText(roomData.getNormalPrice3() + "");
-        e_normalPrice4.setText(roomData.getNormalPrice4() + "");
-        e_normalPrice5.setText(roomData.getNormalPrice5() + "");
-        e_normalPrice6.setText(roomData.getNormalPrice6() + "");
-        e_specialPrice1.setText(roomData.getSpecialPrice1() + "");
-        e_specialPrice2.setText(roomData.getSpecialPrice2() + "");
-        e_specialPrice3.setText(roomData.getSpecialPrice3() + "");
-        e_specialPrice4.setText(roomData.getSpecialPrice4() + "");
-        e_specialPrice5.setText(roomData.getSpecialPrice5() + "");
-        e_specialPrice6.setText(roomData.getSpecialPrice6() + "");
+        tempRoomType = roomData.getRoomType();
+        tempNormalPrice = roomData.getNormalPrice();
+        tempSpecialPrice = roomData.getSpecialPrice();
+        for (int i = 0; i < 18; i++) {
+            if (i < 6)
+                editTextArray[i].setText(tempRoomType[i]);
+            if (i >= 6 && i < 12)
+                editTextArray[i].setText(tempNormalPrice[i - 6] + "");
+            if (i >= 12)
+                editTextArray[i].setText(tempSpecialPrice[i - 12] + "");
+        }
         setMsg.setText(roomData.getMsg());
         button2.setOnClickListener(new View.OnClickListener() {
-//            @Override
+            //            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(EditPage.this, MyActivity.class);
                 startActivity(intent);
             }
         });
         button1.setOnClickListener(new View.OnClickListener() {
-//            @Override
+            @Override
             public void onClick(View v) {
 
-
-                if (e_roomType1.length() != 0) {
-                    roomData.setRoomType1(e_roomType1.getText().toString());
-                    roomData.setNormalPrice1(Integer.parseInt(e_normalPrice1.getText().toString()));
-                    roomData.setSpecialPrice1(Integer.parseInt(e_specialPrice1.getText().toString()));
+                for (int i = 0; i < 6; i++) {
+                    if (editTextArray[i].length() != 0) {
+                        tempRoomType[i] = editTextArray[i].getText().toString();
+                        tempNormalPrice[i] = Integer.parseInt(editTextArray[i + 6].getText().toString());
+                        tempSpecialPrice[i] = Integer.parseInt(editTextArray[i + 12].getText().toString());
+                    } else {
+                        tempRoomType[i] = "";
+                        tempNormalPrice[i] = 0;
+                        tempSpecialPrice[i] = 0;
+                    }
                 }
-
-                if (e_roomType2.length() != 0) {
-                    roomData.setRoomType2(e_roomType2.getText().toString());
-                    roomData.setNormalPrice2(Integer.parseInt(e_normalPrice2.getText().toString()));
-                    roomData.setSpecialPrice2(Integer.parseInt(e_specialPrice2.getText().toString()));
-                }
-                if (e_roomType3.length() != 0) {
-                    roomData.setRoomType3(e_roomType3.getText().toString());
-                    roomData.setNormalPrice3(Integer.parseInt(e_normalPrice3.getText().toString()));
-                    roomData.setSpecialPrice3(Integer.parseInt(e_specialPrice3.getText().toString()));
-                }
-                if (e_roomType4.length() != 0) {
-
-                    roomData.setRoomType4(e_roomType4.getText().toString());
-                    roomData.setNormalPrice4(Integer.parseInt(e_normalPrice4.getText().toString()));
-                    roomData.setSpecialPrice4(Integer.parseInt(e_specialPrice4.getText().toString()));
-                }
-                if (e_roomType5.length() != 0) {
-                    roomData.setRoomType5(e_roomType5.getText().toString());
-                    roomData.setNormalPrice5(Integer.parseInt(e_normalPrice5.getText().toString()));
-                    roomData.setSpecialPrice5(Integer.parseInt(e_specialPrice5.getText().toString()));
-                }
-                if (e_roomType6.length() != 0) {
-                    roomData.setRoomType6(e_roomType6.getText().toString());
-                    roomData.setNormalPrice6(Integer.parseInt(e_normalPrice6.getText().toString()));
-                    roomData.setSpecialPrice6(Integer.parseInt(e_specialPrice6.getText().toString()));
-                }
-                roomData.setMsg(setMsg.getText().toString());
-                Intent intent = new Intent(EditPage.this, MyActivity.class);
-                startActivity(intent);
+                msg = setMsg.getText().toString();
+                new MyTask().execute();
             }
         });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (EditText e :
+                        editTextArray) {
+                    e.setText("");
+                }
+                setMsg.setText("");
+            }
+        });
+    }
+
+    public class MyTask extends AsyncTask<Context, Integer, Integer> {
+        @Override
+        protected Integer doInBackground(Context... params) {
+            int values = 0;
+            roomData.setRoomType(tempRoomType);
+            roomData.setNormalPrice(tempNormalPrice);
+            roomData.setSpecialPrice(tempSpecialPrice);
+            roomData.setMsg(msg);
+            values += 50;
+            publishProgress(values);
+            DataSharedPreferences dataSharedPreferences = new DataSharedPreferences(EditPage.this);
+            boolean flag = dataSharedPreferences.SaveRoomType(roomData.getRoomType());
+            if (flag == true)
+                values += 15;
+            publishProgress(values);
+            flag = dataSharedPreferences.SaveNormalPrice(roomData.getNormalPrice());
+            if (flag == true)
+                values += 15;
+            publishProgress(values);
+            flag = dataSharedPreferences.SaveSpecialPrice(roomData.getSpecialPrice());
+            if (flag == true)
+                values += 15;
+            publishProgress(values);
+            flag = dataSharedPreferences.SaveMsg(roomData.getMsg());
+            if (flag == true)
+                values += 5;
+            publishProgress(values);
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            progressDialog.dismiss();
+            Intent intent = new Intent(EditPage.this, MyActivity.class);
+            startActivity(intent);
+            EditPage.this.finish();
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            progressDialog.setProgress(values[0]);
+        }
     }
 }
